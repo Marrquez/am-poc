@@ -66,6 +66,7 @@ export class TabsComponent {
   }
 }
 
+// decorator directive
 @Component({
   selector: 'app-component-composition',
   standalone: true,
@@ -75,6 +76,12 @@ export class TabsComponent {
 })
 export class ComponentCompositionComponent {
   divName = 'A';
+  currentStyles = {
+    'font-style': 'italic',
+    'font-weight': 'bold',
+    'font-size': '24px',
+    'color': 'pink'
+  };
   @Input() addresses: Address[] = [{ street: "Third Avenue", city: "New York", zipCode: "10001" },
                                    { street: "Constitution Avenue", city: "Washington", zipCode: "20001" }];
   

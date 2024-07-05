@@ -2,27 +2,36 @@
     <strong>ng-template</strong> works only with structural directives (*ngFor, *ngIF, *ngSwitch)
 </p>
 
-<label>Please insert div to show (A, B, C):</label> <br />
+<label [ngClass]="'my-input-class'">Please insert div to show (A, B, C):</label> <br />
 <input type="text" [value]="divName" (keyup)="updateDiv($event)" />
 <div [ngSwitch]="divName">
-    <ng-template [ngSwitchCase]="'A'">AAAA</ng-template>
+    <ng-template [ngSwitchCase]="'A'">AAAA: consume the tag</ng-template>
     <ng-template [ngSwitchCase]="'B'">BBB</ng-template>
     <ng-template [ngSwitchCase]="'C'">CCCC</ng-template>
     <ng-template [ngSwitchDefault]>Other</ng-template>
 </div>
+
+<div *ngIf="divName === 'A'" class="hello-world">
+    Hello world 1
+</div>
+
+<ng-template [ngIf]="divName === 'A'">
+    <div class="hello-world">
+        Hello world 2
+    </div>
+</ng-template>
 
 <ng-container *ngTemplateOutlet="saltoDeLinea"></ng-container>
 
 <p>
     <strong>ng-container</strong> to work with structural directives without introducing extra elements in the dom
 </p>
-<ng-container *ngIf="divName=== 'A'">
-    <label>Im inside of a ngIf</label> <br />
+<ng-container *ngIf="divName === 'A'">
+    <label>Im inside of a ngIf: Dont consume the tag</label> <br />
     <div>
         Yes, You typed A
     </div>
 </ng-container>
-
 <ng-container *ngTemplateOutlet="saltoDeLinea"></ng-container>
 
 <p>
@@ -33,10 +42,11 @@
     https://ebook.learn.epam.com/angular-gmp/docs/module-04-directives-pipes/home-task/
     -->
 
-<app-project-content>
-    <h1>Im a projected title</h1>
-    <div>Im a projected div</div>
-    <span>Im other thing projected</span>
+<app-project-content> 
+    <h3 [ngStyle]="currentStyles" >Im a projected  1</h3>
+    <div>Im a projected div 2</div>
+    <span>Im other thing projected 3</span>
+    <tab title="One"></tab>
 </app-project-content>
 
 <ng-container *ngTemplateOutlet="saltoDeLinea"></ng-container>
